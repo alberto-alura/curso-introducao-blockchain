@@ -1,0 +1,19 @@
+{
+  "name": "blockchain-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cbor": "4.0.0",
+    "nodemon": "^1.13.3",
+    "redux": "3.7.2",
+    "request": "2.83.0",
+    "restify": "6.3.4",
+    "sawtooth-sdk": "1.0.1"
+  }
+}
