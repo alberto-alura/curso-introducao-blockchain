@@ -1,6 +1,10 @@
 var restify = require('restify');
 
 const {registerBlockchain} = require('./sawtooth/client');
+const processor = require('./sawtooth/processor');
+const {VoteHandler} = require('./sawtooth/voteHandler');
+
+processor(new VoteHandler());
 
 function registerVote(req, res, next) {
   const voto = req.body;

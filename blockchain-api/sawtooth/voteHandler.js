@@ -12,7 +12,7 @@ const getAddress = (key, length = 64) => {
 
 const encode = obj => Buffer.from(JSON.stringify(obj, Object.keys(obj).sort()))
 
-class VoteNHandler extends TransactionHandler {
+class VoteHandler extends TransactionHandler {
   constructor () {
     console.log('Iniciando smart contract para votos ')
     const info = handlerInfo();
@@ -34,5 +34,5 @@ class VoteNHandler extends TransactionHandler {
 }
 
 module.exports = {
-  VoteNHandler
+  VoteHandler
 }
