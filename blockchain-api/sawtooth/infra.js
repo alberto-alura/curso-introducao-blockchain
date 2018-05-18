@@ -40,6 +40,26 @@ function sendToSawtoothApi(batchBytes) {
     })
 }
 
+function searchBlockchain(address,callback) {
+  request({
+      url: `http://localhost:8008/state?address=${address}`,
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    }, (error, response, body) => {
+      if (error) {
+        console.log(error);
+      } else {
+        const items = JSON.parse(response.body).data;
+
+        const decodedInfo = items.map((item) => {
+          return JSON.parse(new Buffer(item.data, 'base64').toString());
+        });
+
+        callback(decodedInfo);
+      }
+    })
+}
+
 function buildSawtoothPackage(payloadBytes,privateKey){
 
   const context = createContext('secp256k1');
@@ -86,4 +106,4 @@ function buildSawtoothPackage(payloadBytes,privateKey){
   return batchBytes;
 }
 
-module.exports = { buildSawtoothPackage,sendToSawtoothApi,handlerInfo,calculateVoteAddress}
+module.exports = { buildSawtoothPackage,sendToSawtoothApi,handlerInfo,calculateVoteAddress,searchBlockchain}

@@ -2,6 +2,7 @@
 
 const { createHash } = require('crypto')
 const { TransactionHandler } = require('sawtooth-sdk/processor/handler')
+const {InvalidTransaction} = require('sawtooth-sdk/processor/exceptions');
 const {Decoder} = require('cbor')
 const {calculateVoteAddress,handlerInfo} = require('./infra');
 
@@ -27,6 +28,7 @@ class VoteHandler extends TransactionHandler {
 
     const blockAddress = calculateVoteAddress(payload)
     const {candidateNumber,ellectionName} = payload;
+
     return context.setState({
       [blockAddress]: encode({candidateNumber,ellectionName})
     });
